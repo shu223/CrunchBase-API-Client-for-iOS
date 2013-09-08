@@ -4,7 +4,7 @@ In Progress.
 
 ##Usage
 
-###Add to your project
+###1. Add CrunchBase Client to your project
 
 Add followings to your project.
 
@@ -12,11 +12,9 @@ Add followings to your project.
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking)
 
 
-###Set API Key
+###2. Set API Key
 
-1. Create an API Key from http://developer.crunchbase.com/.
-
-2. Call `setAPIKey:` method.
+You can create your API Key from [http://developer.crunchbase.com/](http://developer.crunchbase.com/).
 
 ````
 #import "CrunchBaseClient.h"
