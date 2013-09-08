@@ -29,4 +29,8 @@
            radiusInMiles:(CGFloat)radiusInMiles
                  handler:(void (^)(NSDictionary *result, NSError *error))handler;
 
+// search by state
++ (void)searchByState:(NSString *)state
+              handler:(void (^)(NSDictionary *result, NSError *error))handler;
+
 @end

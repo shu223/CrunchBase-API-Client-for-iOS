@@ -45,6 +45,7 @@
     [self.locationManager stopUpdatingLocation];
     
     [CrunchBaseClient searchByLocation:newLocation
+                         radiusInMiles:50.0
                                handler:
      ^(NSDictionary *result, NSError *error) {
          
@@ -120,6 +121,32 @@
         self.locationManager.delegate = self;
         [self.locationManager startUpdatingLocation];
     }
+}
+
+- (IBAction)searchByState
+{
+    [SVProgressHUD showWithStatus:@"Loading..."
+                         maskType:SVProgressHUDMaskTypeGradient];
+    
+    self.resultTextView.text = nil;
+    
+    [CrunchBaseClient searchByState:@"CA"
+                              handler:
+     ^(NSDictionary *result, NSError *error) {
+         
+         if (error) {
+             
+             self.resultTextView.text = error.localizedDescription;
+             
+             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+         }
+         else {
+             
+             self.resultTextView.text = result.description;
+             
+             [SVProgressHUD showSuccessWithStatus:@"Succeeded!"];
+         }
+     }];
 }
 
 @end

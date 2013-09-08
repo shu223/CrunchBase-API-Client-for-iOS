@@ -179,6 +179,38 @@
      }];
 }
 
+- (void)searchByState:(NSString *)state
+                 handler:(void (^)(NSDictionary *result, NSError *error))handler
+{
+    NSAssert(state, @"location is required");
+    
+    __weak CrunchBaseClient *weakSelf = self;
+
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        
+        NSString *path = @"search.js";
+        NSDictionary *params = @{@"geo": state};
+        
+        [weakSelf getPath:path
+               parameters:params
+                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                      
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          
+                          handler(responseObject, nil);
+                      });
+                      
+                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                      
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          
+                          handler(nil, error);
+                      });
+                  }];
+    });
+}
+
 
 // =============================================================================
 #pragma mark - Public
@@ -203,12 +235,10 @@
                                               handler:handler];
 }
 
-+ (void)searchByLocation:(CLLocation *)location
-           radiusInMiles:(CGFloat)radiusInMiles
++ (void)searchByState:(NSString *)state
                  handler:(void (^)(NSDictionary *result, NSError *error))handler
 {
-    [[CrunchBaseClient sharedClient] searchByLocation:location
-                                        radiusInMiles:radiusInMiles
+    [[CrunchBaseClient sharedClient] searchByState:state
                                               handler:handler];
 }
 
