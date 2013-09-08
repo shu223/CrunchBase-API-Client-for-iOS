@@ -50,6 +50,8 @@
          
          if (error) {
              
+             self.resultTextView.text = error.localizedDescription;
+
              [SVProgressHUD showErrorWithStatus:error.localizedDescription];
          }
          else if (!result) {
@@ -90,7 +92,9 @@
      ^(NSDictionary *result, NSError *error) {
          
          if (error) {
-             
+
+             self.resultTextView.text = error.localizedDescription;
+
              [SVProgressHUD showErrorWithStatus:error.localizedDescription];
          }
          else {
