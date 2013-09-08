@@ -27,6 +27,10 @@
 		8A3A111817DC106800FFB168 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A110D17DC106800FFB168 /* AFURLConnectionOperation.m */; };
 		8A3A111917DC106800FFB168 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A110F17DC106800FFB168 /* AFXMLRequestOperation.m */; };
 		8A3A111A17DC106800FFB168 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A111117DC106800FFB168 /* UIImageView+AFNetworking.m */; };
+		8AAF1A9F17DC2A24009670F5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AAF1A9E17DC2A24009670F5 /* CoreLocation.framework */; };
+		8AAF1AA417DC3180009670F5 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8AAF1AA117DC3180009670F5 /* SVProgressHUD.bundle */; };
+		8AAF1AA517DC3180009670F5 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAF1AA317DC3180009670F5 /* SVProgressHUD.m */; };
+		8AAF1AA717DC34B3009670F5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AAF1AA617DC34B3009670F5 /* QuartzCore.framework */; };
 		8AD4331E17DC15EF00C3CAAC /* CrunchBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD4331D17DC15EF00C3CAAC /* CrunchBaseClient.m */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +70,11 @@
 		8A3A110F17DC106800FFB168 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		8A3A111017DC106800FFB168 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		8A3A111117DC106800FFB168 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		8AAF1A9E17DC2A24009670F5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8AAF1AA117DC3180009670F5 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		8AAF1AA217DC3180009670F5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		8AAF1AA317DC3180009670F5 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		8AAF1AA617DC34B3009670F5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8AD4331C17DC15EF00C3CAAC /* CrunchBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrunchBaseClient.h; sourceTree = "<group>"; };
 		8AD4331D17DC15EF00C3CAAC /* CrunchBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrunchBaseClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AAF1AA717DC34B3009670F5 /* QuartzCore.framework in Frameworks */,
+				8AAF1A9F17DC2A24009670F5 /* CoreLocation.framework in Frameworks */,
 				8A3A10D717DC0FD600FFB168 /* UIKit.framework in Frameworks */,
 				8A3A10D917DC0FD600FFB168 /* Foundation.framework in Frameworks */,
 				8A3A10DB17DC0FD600FFB168 /* CoreGraphics.framework in Frameworks */,
@@ -106,6 +117,8 @@
 		8A3A10D517DC0FD600FFB168 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8AAF1AA617DC34B3009670F5 /* QuartzCore.framework */,
+				8AAF1A9E17DC2A24009670F5 /* CoreLocation.framework */,
 				8A3A10D617DC0FD600FFB168 /* UIKit.framework */,
 				8A3A10D817DC0FD600FFB168 /* Foundation.framework */,
 				8A3A10DA17DC0FD600FFB168 /* CoreGraphics.framework */,
@@ -143,6 +156,7 @@
 		8A3A10FD17DC106800FFB168 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				8AAF1AA017DC3180009670F5 /* SVProgressHUD */,
 				8A3A10FE17DC106800FFB168 /* AFNetworking */,
 			);
 			path = Vendor;
@@ -172,6 +186,16 @@
 				8A3A111117DC106800FFB168 /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		8AAF1AA017DC3180009670F5 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8AAF1AA117DC3180009670F5 /* SVProgressHUD.bundle */,
+				8AAF1AA217DC3180009670F5 /* SVProgressHUD.h */,
+				8AAF1AA317DC3180009670F5 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		8AD4331B17DC15EF00C3CAAC /* CrunchBaseClient */ = {
@@ -240,6 +264,7 @@
 				8A3A10EB17DC0FD600FFB168 /* Default@2x.png in Resources */,
 				8A3A10ED17DC0FD600FFB168 /* Default-568h@2x.png in Resources */,
 				8A3A10F317DC0FD600FFB168 /* ViewController.xib in Resources */,
+				8AAF1AA417DC3180009670F5 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +288,7 @@
 				8A3A111817DC106800FFB168 /* AFURLConnectionOperation.m in Sources */,
 				8A3A111917DC106800FFB168 /* AFXMLRequestOperation.m in Sources */,
 				8A3A111A17DC106800FFB168 /* UIImageView+AFNetworking.m in Sources */,
+				8AAF1AA517DC3180009670F5 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,6 +1,5 @@
 //
 //  CrunchBaseClient.m
-//  CompanyScouter
 //
 //  Created by shuichi on 9/7/13.
 //  Copyright (c) 2013 Shuichi Tsutsumi. All rights reserved.
@@ -8,6 +7,7 @@
 
 #import "CrunchBaseClient.h"
 #import "AFJSONRequestOperation.h"
+#import <CoreLocation/CoreLocation.h>
 
 
 #define API_BASE_URL      @"http://api.crunchbase.com/v/1/"
@@ -57,6 +57,20 @@
 
     path = [path stringByAppendingFormat:@"?api_key=%@", self.APIKey];
     
+    if ([parameters count]) {
+        
+        for (NSString *key in [parameters keyEnumerator]) {
+            
+            NSString *value = [NSString stringWithFormat:@"%@",
+                               [parameters valueForKey:key]];
+            
+            NSAssert2([key length] && [value length],
+                      @"invalid param! key:%@: value:%@", key, value);
+            
+            path = [path stringByAppendingFormat:@"&%@=%@", key, value];
+        }
+    }
+    
     NSMutableURLRequest *req = [super requestWithMethod:method
                                                    path:path
                                              parameters:nil];
@@ -64,8 +78,8 @@
     return req;
 }
 
-- (void)requestCompanyWithName:(NSString *)name
-                       handler:(void (^)(NSDictionary *result, NSError *error))handler
+- (void)companyWithName:(NSString *)name
+                handler:(void (^)(NSDictionary *result, NSError *error))handler
 {
     NSAssert([name length], @"name is required");
     
@@ -95,6 +109,76 @@
     });
 }
 
+- (void)searchByLocation:(CLLocation *)location
+           radiusInMiles:(CGFloat)radiusInMiles
+                 handler:(void (^)(NSDictionary *result, NSError *error))handler
+{
+    NSAssert(location, @"location is required");
+    
+    __weak CrunchBaseClient *weakSelf = self;
+    
+    // Get Postal Code by reverse-geocoding
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location
+                   completionHandler:
+     ^(NSArray *placemarks, NSError *error) {
+         
+         if (error) {
+             
+             handler(nil, error);
+             
+             return;
+         }
+         
+         if (![placemarks count]) {
+             
+             NSLog(@"no placemarks");
+             
+             handler(nil, nil);
+             
+             return;
+         }
+         
+         CLPlacemark *placemark = (CLPlacemark *)[placemarks lastObject];
+         
+         NSLog(@"ReverseGeocode result:%@", placemark);
+         
+         if (![placemark.postalCode length]) {
+             
+             NSLog(@"no postal code");
+             
+             handler(nil, nil);
+             
+             return;
+         }
+         
+         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+         dispatch_async(queue, ^{
+             
+             NSString *path = @"search.js";
+             NSDictionary *params = @{@"geo": placemark.postalCode,
+                                      @"range": @(radiusInMiles)};
+             
+             [weakSelf getPath:path
+                    parameters:params
+                       success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                           
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               
+                               handler(responseObject, nil);
+                           });
+                           
+                       } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                           
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               
+                               handler(nil, error);
+                           });
+                       }];
+         }); 
+     }];
+}
+
 
 // =============================================================================
 #pragma mark - Public
@@ -104,11 +188,28 @@
     [[CrunchBaseClient sharedClient] setAPIKey:APIKey];
 }
 
-+ (void)requestCompanyWithName:(NSString *)name
-                       handler:(void (^)(NSDictionary *result, NSError *error))handler
++ (void)companyWithName:(NSString *)name
+                handler:(void (^)(NSDictionary *result, NSError *error))handler
 {
-    [[CrunchBaseClient sharedClient] requestCompanyWithName:name
-                                                    handler:handler];
+    [[CrunchBaseClient sharedClient] companyWithName:name
+                                             handler:handler];
+}
+
++ (void)searchByLocation:(CLLocation *)location
+                 handler:(void (^)(NSDictionary *result, NSError *error))handler
+{
+    [[CrunchBaseClient sharedClient] searchByLocation:location
+                                        radiusInMiles:20.0
+                                              handler:handler];
+}
+
++ (void)searchByLocation:(CLLocation *)location
+           radiusInMiles:(CGFloat)radiusInMiles
+                 handler:(void (^)(NSDictionary *result, NSError *error))handler
+{
+    [[CrunchBaseClient sharedClient] searchByLocation:location
+                                        radiusInMiles:radiusInMiles
+                                              handler:handler];
 }
 
 @end
