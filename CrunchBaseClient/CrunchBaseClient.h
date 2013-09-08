@@ -16,8 +16,15 @@
 + (void)setAPIKey:(NSString *)APIKey;
 
 // retrieve a specific company's info
-+ (void)companyWithName:(NSString *)name
++ (void)companyWithName:(NSString *)companyName
                 handler:(void (^)(NSDictionary *result, NSError *error))handler;
+
+// retrieve a specific person's info
++ (void)personWithPermaLink:(NSString *)permaLink
+                    handler:(void (^)(NSDictionary *result, NSError *error))handler;
+
++ (void)personsWithCompanyName:(NSString *)companyName
+                       handler:(void (^)(NSArray *result, NSError *error))handler;
 
 // search by location
 + (void)searchByLocation:(CLLocation *)location

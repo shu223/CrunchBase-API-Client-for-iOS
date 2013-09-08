@@ -12,6 +12,11 @@
 #import <CoreLocation/CoreLocation.h>
 
 
+#define kCompanyName @"appsocially"
+#define kStateName   @"CA"
+#define kRadiusForNearby 50.0
+
+
 @interface ViewController ()
 <CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -45,7 +50,7 @@
     [self.locationManager stopUpdatingLocation];
     
     [CrunchBaseClient searchByLocation:newLocation
-                         radiusInMiles:50.0
+                         radiusInMiles:kRadiusForNearby
                                handler:
      ^(NSDictionary *result, NSError *error) {
          
@@ -76,6 +81,10 @@
 
 
 // =============================================================================
+#pragma mark Private
+
+
+// =============================================================================
 #pragma mark - IBAction
 
 /**
@@ -88,7 +97,7 @@
 
     self.resultTextView.text = nil;
     
-    [CrunchBaseClient companyWithName:@"appsocially"
+    [CrunchBaseClient companyWithName:kCompanyName
                               handler:
      ^(NSDictionary *result, NSError *error) {
          
@@ -101,6 +110,34 @@
          else {
 
              self.resultTextView.text = result.description;
+             
+             [SVProgressHUD showSuccessWithStatus:@"Succeeded!"];
+         }
+     }];
+}
+
+- (IBAction)retrievePersonsInfo {
+
+    [SVProgressHUD showWithStatus:@"Loading..."
+                         maskType:SVProgressHUDMaskTypeGradient];
+    
+    self.resultTextView.text = nil;
+
+    [CrunchBaseClient personsWithCompanyName:kCompanyName
+                                     handler:
+     ^(NSArray *result, NSError *error) {
+         
+         if (error) {
+             
+             self.resultTextView.text = error.localizedDescription;
+             
+             [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+         }
+         else {
+
+             NSLog(@"result:%@", result);
+
+             self.resultTextView.text = result.description;             
              
              [SVProgressHUD showSuccessWithStatus:@"Succeeded!"];
          }
@@ -130,7 +167,7 @@
     
     self.resultTextView.text = nil;
     
-    [CrunchBaseClient searchByState:@"CA"
+    [CrunchBaseClient searchByState:kStateName
                               handler:
      ^(NSDictionary *result, NSError *error) {
          

@@ -14,7 +14,9 @@
 
 
 @interface CrunchBaseClient ()
-@property (nonatomic) NSString *APIKey;
+@property (nonatomic, strong) NSString *APIKey;
+@property (assign) NSUInteger numPendingPersons;
+@property (strong) NSMutableArray *tempPersonInfos;
 @end
 
 
@@ -78,18 +80,49 @@
     return req;
 }
 
-- (void)companyWithName:(NSString *)name
+- (void)companyWithName:(NSString *)companyName
                 handler:(void (^)(NSDictionary *result, NSError *error))handler
 {
-    NSAssert([name length], @"name is required");
+    NSAssert([companyName length], @"companyName is required");
     
     __weak CrunchBaseClient *weakSelf = self;
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
 
-        NSString *path = [NSString stringWithFormat:@"company/%@.js", name];
+        NSString *path = [NSString stringWithFormat:@"company/%@.js", companyName];
 
+        [weakSelf getPath:path
+               parameters:nil
+                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                      
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          
+                          handler(responseObject, nil);
+                      });
+                      
+                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                      
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          
+                          handler(nil, error);
+                      });
+                  }];
+    });
+}
+
+- (void)personWithPermaLink:(NSString *)permaLink
+                    handler:(void (^)(NSDictionary *result, NSError *error))handler
+{
+    NSAssert([permaLink length], @"permaLink is required");
+    
+    __weak CrunchBaseClient *weakSelf = self;
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        
+        NSString *path = [NSString stringWithFormat:@"person/%@.js", permaLink];
+        
         [weakSelf getPath:path
                parameters:nil
                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -220,11 +253,56 @@
     [[CrunchBaseClient sharedClient] setAPIKey:APIKey];
 }
 
-+ (void)companyWithName:(NSString *)name
++ (void)companyWithName:(NSString *)companyName
                 handler:(void (^)(NSDictionary *result, NSError *error))handler
 {
-    [[CrunchBaseClient sharedClient] companyWithName:name
+    [[CrunchBaseClient sharedClient] companyWithName:companyName
                                              handler:handler];
+}
+
++ (void)personWithPermaLink:(NSString *)permaLink
+                    handler:(void (^)(NSDictionary *result, NSError *error))handler
+{
+    [[CrunchBaseClient sharedClient] personWithPermaLink:permaLink
+                                                 handler:handler];
+}
+
++ (void)personsWithCompanyName:(NSString *)companyName
+                       handler:(void (^)(NSArray *result, NSError *error))handler
+{
+    [CrunchBaseClient companyWithName:companyName
+                              handler:
+     ^(NSDictionary *result, NSError *error) {
+         
+         if (error) {
+             handler(nil,error);
+             return;
+         }
+
+         NSArray *relationShips = result[@"relationships"];
+         
+         [CrunchBaseClient sharedClient].numPendingPersons = [relationShips count];
+         [CrunchBaseClient sharedClient].tempPersonInfos = @[].mutableCopy;
+         
+         for (NSDictionary *relation in relationShips) {
+             
+             NSDictionary *person = relation[@"person"];
+             
+             [[CrunchBaseClient sharedClient] personWithPermaLink:person[@"permalink"]
+                                                          handler:
+              ^(NSDictionary *result, NSError *error) {
+                  
+                  [CrunchBaseClient sharedClient].numPendingPersons--;
+                  
+                  [[CrunchBaseClient sharedClient].tempPersonInfos addObject:result];
+                  
+                  if ([CrunchBaseClient sharedClient].numPendingPersons <= 0) {
+                      
+                      handler([CrunchBaseClient sharedClient].tempPersonInfos, nil);
+                  }
+              }];
+         }
+     }];
 }
 
 + (void)searchByLocation:(CLLocation *)location
@@ -232,6 +310,15 @@
 {
     [[CrunchBaseClient sharedClient] searchByLocation:location
                                         radiusInMiles:20.0
+                                              handler:handler];
+}
+
++ (void)searchByLocation:(CLLocation *)location
+           radiusInMiles:(CGFloat)radiusInMiles
+                 handler:(void (^)(NSDictionary *result, NSError *error))handler
+{
+    [[CrunchBaseClient sharedClient] searchByLocation:location
+                                        radiusInMiles:radiusInMiles
                                               handler:handler];
 }
 
