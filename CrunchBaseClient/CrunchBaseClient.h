@@ -13,8 +13,6 @@
 
 @interface CrunchBaseClient : AFHTTPClient
 
-+ (CrunchBaseClient *)sharedClient;
-
 + (void)setAPIKey:(NSString *)APIKey;
 
 // retrieve a specific company's info

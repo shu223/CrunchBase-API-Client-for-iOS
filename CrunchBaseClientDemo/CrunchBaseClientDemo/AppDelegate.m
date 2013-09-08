@@ -15,7 +15,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [CrunchBaseClient setAPIKey:@"s8weu5yhzgynjvhcnxhbeb58"];
+    [CrunchBaseClient setAPIKey:<# YOUR API KEY #>];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

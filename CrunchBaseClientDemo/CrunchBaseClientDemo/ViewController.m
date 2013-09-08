@@ -62,7 +62,7 @@
          else {
              
              self.resultTextView.text = result.description;
-             
+             NSLog(@"result:%@", result);
              [SVProgressHUD showSuccessWithStatus:@"Succeeded!"];
          }
      }];
@@ -143,7 +143,9 @@
          else {
              
              self.resultTextView.text = result.description;
-             
+
+             NSLog(@"result:%@", result);
+
              [SVProgressHUD showSuccessWithStatus:@"Succeeded!"];
          }
      }];

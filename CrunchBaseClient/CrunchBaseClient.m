@@ -180,7 +180,7 @@
 }
 
 - (void)searchByState:(NSString *)state
-                 handler:(void (^)(NSDictionary *result, NSError *error))handler
+              handler:(void (^)(NSDictionary *result, NSError *error))handler
 {
     NSAssert(state, @"location is required");
     
@@ -236,10 +236,10 @@
 }
 
 + (void)searchByState:(NSString *)state
-                 handler:(void (^)(NSDictionary *result, NSError *error))handler
+              handler:(void (^)(NSDictionary *result, NSError *error))handler
 {
     [[CrunchBaseClient sharedClient] searchByState:state
-                                              handler:handler];
+                                           handler:handler];
 }
 
 @end
