@@ -7,17 +7,33 @@
 //
 
 #import "ViewController.h"
+#import "CrunchBaseClient.h"
+
 
 @interface ViewController ()
 
 @end
+
 
 @implementation ViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    [CrunchBaseClient requestCompanyWithName:@"AppSocially"
+                                     handler:
+     ^(NSDictionary *result, NSError *error) {
+         
+         if (error) {
+             
+             NSLog(@"error:%@", error);
+         }
+         else {
+             
+             NSLog(@"result:%@", result);
+         }
+     }];
 }
 
 - (void)didReceiveMemoryWarning
