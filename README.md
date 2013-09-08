@@ -24,16 +24,43 @@ You can create your API Key from [http://developer.crunchbase.com/](http://devel
 [CrunchBaseClient setAPIKey:@"YOUR API KEY"];
 ````
 
-##Example
+##Examples
 
 - Retrieve a specific **company**'s information 
 
 ````
-[CrunchBaseClient requestCompanyWithName:@"appsocially"
-                                 handler:
+[CrunchBaseClient companyWithName:@"appsocially"
+                          handler:
  ^(NSDictionary *result, NSError *error) {
      
      // Do something.
  }];
 ````
 
+- Search by **location** (CLLocation object)
+
+````
+[CrunchBaseClient searchByLocation:location
+                     radiusInMiles:50.0
+                           handler:
+ ^(NSDictionary *result, NSError *error) {
+     
+     // Do something.
+ }];
+````
+
+- Search by **state**
+
+````
+[CrunchBaseClient searchByState:@"CA"
+                          handler:
+ ^(NSDictionary *result, NSError *error) {
+     
+     // Do something.
+ }];
+````
+
+
+##License
+
+MIT License
