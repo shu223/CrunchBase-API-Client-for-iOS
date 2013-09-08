@@ -18,7 +18,6 @@
 		8A3A10ED17DC0FD600FFB168 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3A10EC17DC0FD600FFB168 /* Default-568h@2x.png */; };
 		8A3A10F017DC0FD600FFB168 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A10EF17DC0FD600FFB168 /* ViewController.m */; };
 		8A3A10F317DC0FD600FFB168 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3A10F117DC0FD600FFB168 /* ViewController.xib */; };
-		8A3A10FC17DC106300FFB168 /* CrunchBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A10FB17DC106300FFB168 /* CrunchBaseClient.m */; };
 		8A3A111217DC106800FFB168 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A110017DC106800FFB168 /* AFHTTPClient.m */; };
 		8A3A111317DC106800FFB168 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A110217DC106800FFB168 /* AFHTTPRequestOperation.m */; };
 		8A3A111417DC106800FFB168 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A110417DC106800FFB168 /* AFImageRequestOperation.m */; };
@@ -28,6 +27,7 @@
 		8A3A111817DC106800FFB168 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A110D17DC106800FFB168 /* AFURLConnectionOperation.m */; };
 		8A3A111917DC106800FFB168 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A110F17DC106800FFB168 /* AFXMLRequestOperation.m */; };
 		8A3A111A17DC106800FFB168 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A111117DC106800FFB168 /* UIImageView+AFNetworking.m */; };
+		8AD4331E17DC15EF00C3CAAC /* CrunchBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AD4331D17DC15EF00C3CAAC /* CrunchBaseClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +47,6 @@
 		8A3A10EE17DC0FD600FFB168 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8A3A10EF17DC0FD600FFB168 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8A3A10F217DC0FD600FFB168 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		8A3A10FA17DC106300FFB168 /* CrunchBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrunchBaseClient.h; sourceTree = "<group>"; };
-		8A3A10FB17DC106300FFB168 /* CrunchBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrunchBaseClient.m; sourceTree = "<group>"; };
 		8A3A10FF17DC106800FFB168 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		8A3A110017DC106800FFB168 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		8A3A110117DC106800FFB168 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -68,6 +66,8 @@
 		8A3A110F17DC106800FFB168 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		8A3A111017DC106800FFB168 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		8A3A111117DC106800FFB168 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		8AD4331C17DC15EF00C3CAAC /* CrunchBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrunchBaseClient.h; sourceTree = "<group>"; };
+		8AD4331D17DC15EF00C3CAAC /* CrunchBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrunchBaseClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +87,9 @@
 		8A3A10CA17DC0FD600FFB168 = {
 			isa = PBXGroup;
 			children = (
-				8A3A10FD17DC106800FFB168 /* Vendor */,
-				8A3A10F917DC106300FFB168 /* CrunchBaseClient */,
+				8AD4331B17DC15EF00C3CAAC /* CrunchBaseClient */,
 				8A3A10DC17DC0FD600FFB168 /* CrunchBaseClientDemo */,
+				8A3A10FD17DC106800FFB168 /* Vendor */,
 				8A3A10D517DC0FD600FFB168 /* Frameworks */,
 				8A3A10D417DC0FD600FFB168 /* Products */,
 			);
@@ -140,15 +140,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8A3A10F917DC106300FFB168 /* CrunchBaseClient */ = {
-			isa = PBXGroup;
-			children = (
-				8A3A10FA17DC106300FFB168 /* CrunchBaseClient.h */,
-				8A3A10FB17DC106300FFB168 /* CrunchBaseClient.m */,
-			);
-			path = CrunchBaseClient;
-			sourceTree = "<group>";
-		};
 		8A3A10FD17DC106800FFB168 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +172,16 @@
 				8A3A111117DC106800FFB168 /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		8AD4331B17DC15EF00C3CAAC /* CrunchBaseClient */ = {
+			isa = PBXGroup;
+			children = (
+				8AD4331C17DC15EF00C3CAAC /* CrunchBaseClient.h */,
+				8AD4331D17DC15EF00C3CAAC /* CrunchBaseClient.m */,
+			);
+			name = CrunchBaseClient;
+			path = ../CrunchBaseClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +253,7 @@
 				8A3A10E317DC0FD600FFB168 /* main.m in Sources */,
 				8A3A10E717DC0FD600FFB168 /* AppDelegate.m in Sources */,
 				8A3A10F017DC0FD600FFB168 /* ViewController.m in Sources */,
-				8A3A10FC17DC106300FFB168 /* CrunchBaseClient.m in Sources */,
+				8AD4331E17DC15EF00C3CAAC /* CrunchBaseClient.m in Sources */,
 				8A3A111217DC106800FFB168 /* AFHTTPClient.m in Sources */,
 				8A3A111317DC106800FFB168 /* AFHTTPRequestOperation.m in Sources */,
 				8A3A111417DC106800FFB168 /* AFImageRequestOperation.m in Sources */,

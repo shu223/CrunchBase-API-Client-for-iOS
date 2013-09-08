@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>42493DAB-0CED-4175-84F6-B20EB5E92F81</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CrunchBaseClientDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F6F8A8ED-6EDD-4A73-B64A-F6F83974B79C</key>
+		<string>ssh://github.com/shu223/CrunchBase-API-Client-for-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CrunchBaseClientDemo/CrunchBaseClientDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F6F8A8ED-6EDD-4A73-B64A-F6F83974B79C</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/shu223/CrunchBase-API-Client-for-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F6F8A8ED-6EDD-4A73-B64A-F6F83974B79C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F6F8A8ED-6EDD-4A73-B64A-F6F83974B79C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CrunchBaseClient</string>
+		</dict>
+	</array>
+</dict>
+</plist>
